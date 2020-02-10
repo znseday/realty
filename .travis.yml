@@ -17,6 +17,8 @@ matrix:
           packages:
             - g++-8
             #- libboost-test-dev
+            - libopenblas-dev
+            - libdlib-dev
       env:
          - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
 before_install:
