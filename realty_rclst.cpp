@@ -65,7 +65,7 @@ void TaskTrain::TrainAndSave(int ClusterCount, const std::string &fn)
 
     for (auto point : data)
     {
-        for (int i = 0; i < point.size(); i++)
+        for (int i = 0; i < (int)point.size(); i++)
             m(i) = point[i];
 
         samples.push_back(m);
@@ -84,8 +84,8 @@ void TaskTrain::TrainAndSave(int ClusterCount, const std::string &fn)
 
     ovo_trainer trainer;
 
-    krr_trainer<rbf_kernel> rbf_trainer;
-    svm_nu_trainer<poly_kernel> poly_trainer;
+    dlib::krr_trainer<rbf_kernel> rbf_trainer;
+    dlib::svm_nu_trainer<poly_kernel> poly_trainer;
     poly_trainer.set_kernel(poly_kernel(0.1, 1, 2));
     rbf_trainer.set_kernel(rbf_kernel(0.1));
 
@@ -98,18 +98,18 @@ void TaskTrain::TrainAndSave(int ClusterCount, const std::string &fn)
     trainer.set_trainer(poly_trainer, 1, 2);
     // Next, if you wanted to obtain the decision rule learned by a one_vs_one_trainer you
     // would store it into a one_vs_one_decision_function.
-    one_vs_one_decision_function<ovo_trainer> df = trainer.train(samples, labels);
+    dlib::one_vs_one_decision_function<ovo_trainer> df = trainer.train(samples, labels);
     // If you want to save a one_vs_one_decision_function to disk, you can do
     // so.  However, you must declare what kind of decision functions it contains.
-    one_vs_one_decision_function<ovo_trainer,
-            decision_function<poly_kernel>,  // This is the output of the poly_trainer
-            decision_function<rbf_kernel>    // This is the output of the rbf_trainer
+    dlib::one_vs_one_decision_function<ovo_trainer,
+            dlib::decision_function<poly_kernel>,  // This is the output of the poly_trainer
+            dlib::decision_function<rbf_kernel>    // This is the output of the rbf_trainer
         > df2;
 
     // Put df into df2 and then save df2 to disk.  Note that we could have also said
     // df2 = trainer.train(samples, labels);  But doing it this way avoids retraining.
     df2 = df;
-    serialize(fn+string(".dat")) << df2;
+    dlib::serialize(fn+string(".dat")) << df2;
 
     ofstream f(fn+string(".map"));
 

@@ -54,7 +54,7 @@ void TaskAnalyze::AnalyzeStream()
                dlib::decision_function<rbf_kernel>    // This is the output of the rbf_trainer
            > df3;
 
-    deserialize(fn+string(".dat")) >> df3;
+    dlib::deserialize(fn+string(".dat")) >> df3;
 
     string line;
     while (getline(i_stream, line))
@@ -67,7 +67,7 @@ void TaskAnalyze::AnalyzeStream()
 
         sample_type sample;
 
-        for (int i = 0; i < point.size(); i++)
+        for (int i = 0; i < (int)point.size(); i++)
             sample(i) = point[i];
 
         int predictLabel = (int)df3(sample);
