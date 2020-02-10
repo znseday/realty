@@ -13,7 +13,7 @@
 #include "C:/dlib-19.19/dlib-19.19/dlib/svm_threaded.h"
 #include "C:/dlib-19.19/dlib-19.19/dlib/svm/krr_trainer.h"
 #else
-#include <dlib/svm_threaded.h>
+#include <dlib/svm/svm_threaded.h>
 #include <dlib/clustering.h>
 #endif
 
