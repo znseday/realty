@@ -23,6 +23,20 @@ Sample TaskTrain::DataStringToSample(const std::string &line)
     return res;
 }
 
+std::string TaskTrain::ConvrtDataLabelsToString(const Sample &sample, double label)
+{
+    std::stringstream ss;
+    ss << (int)label << ";";
+    ss << sample[0] << ";";
+    ss << sample[1] << ";";
+    ss << (int)sample[2] << ";";
+    ss << sample[3] << ";";
+    ss << sample[4] << ";";
+    ss << sample[5] << ";";
+    ss << (int)sample[6] << ";";
+    return ss.str();
+}
+
 
 void TaskTrain::LoadDataFromInputStream()
 {
@@ -65,7 +79,7 @@ void TaskTrain::TrainAndSave(int ClusterCount, const std::string &fn)
 
     for (auto point : data)
     {
-        for (int i = 0; i < (int)point.size(); i++)
+        for (int i = 0; i < m.size(); i++)
             m(i) = point[i];
 
         samples.push_back(m);

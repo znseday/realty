@@ -67,7 +67,7 @@ void TaskAnalyze::AnalyzeStream()
 
         sample_type sample;
 
-        for (int i = 0; i < (int)point.size(); i++)
+        for (int i = 0; i < sample.size(); i++)
             sample(i) = point[i];
 
         int predictLabel = (int)df3(sample);

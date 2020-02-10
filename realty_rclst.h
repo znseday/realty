@@ -30,6 +30,8 @@ public:
 
     static Sample DataStringToSample(const std::string &line);
 
+    static std::string ConvrtDataLabelsToString(const Sample &sample, double label);
+
     void LoadDataFromInputStream();
 
     void TrainAndSave(int ClusterCount, const std::string &fn);

@@ -41,19 +41,4 @@ using poly_kernel = dlib::polynomial_kernel<sample_type>;
 using rbf_kernel  = dlib::radial_basis_kernel<sample_type>;
 
 
-
-std::string ConvrtDataLabelsToString(const Sample &sample, double label)
-{
-    std::stringstream ss;
-    ss << (int)label << ";";
-    ss << sample[0] << ";";
-    ss << sample[1] << ";";
-    ss << (int)sample[2] << ";";
-    ss << sample[3] << ";";
-    ss << sample[4] << ";";
-    ss << sample[5] << ";";
-    ss << (int)sample[6] << ";";
-    return ss.str();
-}
-
 #endif // COMMON_H
