@@ -24,8 +24,8 @@ void TaskAnalyze::LoadSampleMapFromFile()
     while (getline(i_stream, line))
     {  
         Sample res; int label;
-        sscanf(line.c_str(), "%i;%lf;%lf;%lf;%lf;%lf;%lf", &label,
-                     &res[0], &res[1], &res[2], &res[3], &res[4], &res[5]);
+        sscanf(line.c_str(), "%i;%lf;%lf;%lf;%lf;%lf;%lf;%lf", &label,
+                     &res[0], &res[1], &res[2], &res[3], &res[4], &res[5], &res[6]);
 
         sample_map[label].emplace_back(res);
 
@@ -61,8 +61,8 @@ void TaskAnalyze::AnalyzeStream()
     while (getline(i_stream, line))
     {
         Sample point;
-        sscanf(line.c_str(), "%lf;%lf;%lf;%lf;%lf;%lf",
-                     &point[0], &point[1], &point[2], &point[3], &point[4], &point[5]);
+        sscanf(line.c_str(), "%lf;%lf;%lf;%lf;%lf;%lf;%lf",
+                     &point[0], &point[1], &point[2], &point[3], &point[4], &point[5], &point[6]);
 
         MY_DEBUG_ONLY( cout << "echo: " << line << endl; ) // just echo
 
