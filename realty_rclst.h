@@ -23,7 +23,7 @@ class TaskTrain
 {
 private:
     Samples data;
-    std::vector<double> &labels;
+    std::vector<double> labels;
 
 public:
     TaskTrain() = default;

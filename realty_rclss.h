@@ -23,7 +23,7 @@ class TaskAnalyze
 {
 private:
 //    Samples data;
-//    std::vector<double> &labels;
+//    std::vector<double> labels;
 
     SampleMap sample_map;
 
