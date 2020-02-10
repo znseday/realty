@@ -56,7 +56,6 @@ void TaskAnalyze::AnalyzeStream()
 
     deserialize(fn+string(".dat")) >> df3;
 
-    using sample_type = dlib::matrix<double,6,1>;
     string line;
     while (getline(i_stream, line))
     {

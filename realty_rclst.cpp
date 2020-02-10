@@ -50,13 +50,12 @@ void TaskTrain::LoadDataFromInputStream()
 
 void TaskTrain::TrainAndSave(int ClusterCount, const std::string &fn)
 {
-    using sample_type = dlib::matrix<double,6,1>;
 
     // Возможно, выбрать другой кернел
     //typedef dlib::radial_basis_kernel<sample_type> kernel_type;
     using  kernel_type = poly_kernel;
 
-    dlib::kcentroid<kernel_type> kc(kernel_type(0.05),0.005, 8);
+    dlib::kcentroid<kernel_type> kc(kernel_type(0.05,0.005, 8));
     dlib::kkmeans<kernel_type> test(kc);
 
     vector<sample_type> samples;

@@ -31,12 +31,16 @@ extern bool IsDebugOutput;
 
 using Sample  = std::array<double,7>;
 using Samples = std::vector<Sample>;
-
-using ovo_trainer = dlib::one_vs_one_trainer<dlib::any_trainer<Sample>>;
-using poly_kernel = dlib::polynomial_kernel<Sample>;
-using rbf_kernel  = dlib::radial_basis_kernel<Sample>;
-
 using SampleMap = std::unordered_map<int, Samples>;
+
+
+using sample_type = dlib::matrix<double,6,1>;
+
+using ovo_trainer = dlib::one_vs_one_trainer<dlib::any_trainer<sample_type>>;
+using poly_kernel = dlib::polynomial_kernel<sample_type>;
+using rbf_kernel  = dlib::radial_basis_kernel<sample_type>;
+
+
 
 std::string ConvrtDataLabelsToString(const Sample &sample, double label)
 {
