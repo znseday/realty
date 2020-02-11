@@ -13,7 +13,7 @@ bool IsDebugOutput = false;
 
 void TaskAnalyze::LoadSampleMapFromFile()
 {
-    ifstream i_stream = ifstream(fn+string(".map"));
+    ifstream i_stream = ifstream(fn+string(".txt"));
     if (!i_stream)
     {
         cout << "My error: the SampleMap file not found" << endl;
@@ -63,7 +63,8 @@ void TaskAnalyze::AnalyzeStream()
         sscanf(line.c_str(), "%lf;%lf;%lf;%lf;%lf;%lf;%lf",
                      &point[0], &point[1], &point[2], &point[3], &point[4], &point[5], &point[6]);
 
-        MY_DEBUG_ONLY( cout << "echo: " << line << endl; ) // just echo
+        MY_DEBUG_ONLY( cout << "echo (original): " << line << endl; ) // just echo
+        MY_DEBUG_ONLY( cout << "echo (check): " << point[0] << point[1] << point[2] << point[3] << point[4] << point[5] << point[6] << endl; ) // just echo
 
         sample_type sample;
 
@@ -87,7 +88,7 @@ void TaskAnalyze::AnalyzeStream()
             cout << s[3] << ";";
             cout << s[4] << ";";
             cout << s[5] << ";";
-            cout << (int)s[6] << ";";
+            cout << (int)s[6] << endl;
         }
     }
 }

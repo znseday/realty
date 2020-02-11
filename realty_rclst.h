@@ -34,7 +34,7 @@ public:
 
     void LoadDataFromInputStream();
 
-    void TrainAndSave(int ClusterCount, const std::string &fn);
+    void TrainAndSave(int ClusterCount, const std::string &fn, double g, double c, double d);
 };
 
 

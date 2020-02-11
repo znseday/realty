@@ -33,7 +33,7 @@ std::string TaskTrain::ConvrtDataLabelsToString(const Sample &sample, double lab
     ss << sample[3] << ";";
     ss << sample[4] << ";";
     ss << sample[5] << ";";
-    ss << (int)sample[6] << ";";
+    ss << (int)sample[6];
     return ss.str();
 }
 
@@ -62,14 +62,13 @@ void TaskTrain::LoadDataFromInputStream()
     }
 }
 
-void TaskTrain::TrainAndSave(int ClusterCount, const std::string &fn)
+void TaskTrain::TrainAndSave(int ClusterCount, const std::string &fn, double g, double c, double d)
 {
-
     // Возможно, выбрать другой кернел
     //typedef dlib::radial_basis_kernel<sample_type> kernel_type;
     using  kernel_type = poly_kernel;
 
-    dlib::kcentroid<kernel_type> kc(kernel_type(0.05,0.005, 8));
+    dlib::kcentroid<kernel_type> kc(kernel_type(g, c, d));
     dlib::kkmeans<kernel_type> test(kc);
 
     vector<sample_type> samples;
@@ -125,7 +124,7 @@ void TaskTrain::TrainAndSave(int ClusterCount, const std::string &fn)
     df2 = df;
     dlib::serialize(fn+string(".dat")) << df2;
 
-    ofstream f(fn+string(".map"));
+    ofstream f(fn+string(".txt"));
 
     for (size_t i = 0; i < samples.size(); i++)
         f << ConvrtDataLabelsToString(data[i], labels[i]) << endl;
