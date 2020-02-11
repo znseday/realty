@@ -29,8 +29,14 @@ void TaskAnalyze::LoadSampleMapFromFile()
 
         sample_map[label].emplace_back(res);
 
-        MY_DEBUG_ONLY( cout << "echo:  " << line << endl; ) // just echo
-
+        MY_DEBUG_ONLY( cout << "echo (original):  " << line << endl; ) // just echo
+        MY_DEBUG_ONLY( cout << "echo (check): " << label << "; " << res[0] << "; "
+                                                                 << res[1] << "; "
+                                                                 << res[2] << "; "
+                                                                 << res[3] << "; "
+                                                                 << res[4] << "; "
+                                                                 << res[5] << "; "
+                                                                 << res[6] << endl; ) // just echo
     }
     //sample_map.rehash(sample_map.size());
 }
@@ -64,7 +70,13 @@ void TaskAnalyze::AnalyzeStream()
                      &point[0], &point[1], &point[2], &point[3], &point[4], &point[5], &point[6]);
 
         MY_DEBUG_ONLY( cout << "echo (original): " << line << endl; ) // just echo
-        MY_DEBUG_ONLY( cout << "echo (check): " << point[0] << point[1] << point[2] << point[3] << point[4] << point[5] << point[6] << endl; ) // just echo
+        MY_DEBUG_ONLY( cout << "echo (check): " << point[0] << "; "
+                                                << point[1] << "; "
+                                                << point[2] << "; "
+                                                << point[3] << "; "
+                                                << point[4] << "; "
+                                                << point[5] << "; "
+                                                << point[6] << endl; ) // just echo
 
         sample_type sample;
 

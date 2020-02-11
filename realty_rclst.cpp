@@ -58,7 +58,13 @@ void TaskTrain::LoadDataFromInputStream()
         Sample sample = DataStringToSample(line);
         data.emplace_back(std::move(sample));
 
-        MY_DEBUG_ONLY( cout << line << endl; ) // just echo
+        MY_DEBUG_ONLY( cout << "echo (original): " << line << endl; ) // just echo
+        MY_DEBUG_ONLY( cout << "echo (check): " << data.back()[0] << "; " << data.back()[1]
+                                                                  << "; " << data.back()[2]
+                                                                  << "; " << data.back()[3]
+                                                                  << "; " << data.back()[4]
+                                                                  << "; " << data.back()[5]
+                                                                  << "; " << data.back()[6] << endl; ) // just echo
     }
 }
 
