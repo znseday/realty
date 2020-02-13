@@ -127,8 +127,8 @@ void TaskTrain::TrainAndSave(int ClusterCount, const std::string &fn, double g, 
 
     dlib::krr_trainer<rbf_kernel> rbf_trainer;
     dlib::svm_nu_trainer<poly_kernel> poly_trainer;
-    poly_trainer.set_kernel(poly_kernel(0.1, 1, 2));
-    rbf_trainer.set_kernel(rbf_kernel(0.1));
+    poly_trainer.set_kernel(poly_kernel(g, c, d));
+    rbf_trainer.set_kernel(rbf_kernel(g));
 
     // Now tell the one_vs_one_trainer that, by default, it should use the rbf_trainer
     // to solve the individual binary classification subproblems.
