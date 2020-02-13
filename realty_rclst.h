@@ -28,7 +28,7 @@ private:
 public:
     TaskTrain() = default;
 
-    static Sample DataStringToSample(const std::string &line);
+    static Sample DataStringToSample(std::string line);
 
     static std::string ConvrtDataLabelsToString(const Sample &sample, double label);
 

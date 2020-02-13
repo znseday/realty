@@ -12,11 +12,24 @@ using namespace std;
 
 bool IsDebugOutput = false;
 
-Sample TaskTrain::DataStringToSample(const std::string &line)
+Sample TaskTrain::DataStringToSample(std::string line)
 {
-    Sample res = {0}; int t1 = -1, t2 = -1;
+    Sample res = {0};
+    int t1 = -1, t2 = -1;
+
+    for (size_t i = 0; i < line.length(); i++)
+    {
+        size_t p = line.find(";;", i);
+        if (p != string::npos)
+        {
+            line.insert(p+1, 1, '0');
+            i = p + 1;
+        }
+    }
     sscanf(line.c_str(), "%lf;%lf;%lf;%lf;%lf;%lf;%i;%i",
                  &res[0], &res[1], &res[2], &res[3], &res[4], &res[5], &t1, &t2);
+
+
 
     MY_DEBUG_ONLY( cout << "echo (check full): " << res[0] << "; " << res[1]
                                                               << "; " << res[2]
