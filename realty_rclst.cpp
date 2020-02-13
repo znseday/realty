@@ -3,6 +3,7 @@
 #include <fstream>
 #include <chrono>
 #include <thread>
+#include <cstring>
 
 //#include "common.h"
 #include "realty_rclst.h"
@@ -13,9 +14,17 @@ bool IsDebugOutput = false;
 
 Sample TaskTrain::DataStringToSample(const std::string &line)
 {
-    Sample res; int t1, t2;
+    Sample res = {0}; int t1 = -1, t2 = -1;
     sscanf(line.c_str(), "%lf;%lf;%lf;%lf;%lf;%lf;%i;%i",
                  &res[0], &res[1], &res[2], &res[3], &res[4], &res[5], &t1, &t2);
+
+    MY_DEBUG_ONLY( cout << "echo (check full): " << res[0] << "; " << res[1]
+                                                              << "; " << res[2]
+                                                              << "; " << res[3]
+                                                              << "; " << res[4]
+                                                              << "; " << res[5]
+                                                              << "; " << t1 << "; " << t2 << endl; ) // just echo
+
     if (t1 == 1 || t1 == t2)
         res[6] = 0;
     else
