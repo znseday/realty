@@ -94,9 +94,11 @@ void TaskTrain::TrainAndSave(int ClusterCount, const std::string &fn, double g, 
 {
     // Возможно, выбрать другой кернел
     //typedef dlib::radial_basis_kernel<sample_type> kernel_type;
-    using  kernel_type = poly_kernel;
+    //using  kernel_type = poly_kernel;
+    using  kernel_type = rbf_kernel;
 
-    dlib::kcentroid<kernel_type> kc(kernel_type(g, c, d));
+//    dlib::kcentroid<kernel_type> kc(kernel_type(g, c, d));
+    dlib::kcentroid<kernel_type> kc(kernel_type{g});
     dlib::kkmeans<kernel_type> test(kc);
 
     vector<sample_type> samples;
