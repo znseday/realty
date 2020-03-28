@@ -169,10 +169,12 @@ void TaskTrain::TrainAndSave(int ClusterCount, const std::string &fn, double g, 
     // For a discussion of why this is a good idea see the svm_ex.cpp example.
     if (IsCrossValidation)
     {
+        cout << "My: Cross Validation started..." << endl;
         //std::vector<double> temp_labels = labels;
         randomize_samples(samples, labels);
         cout << "cross validation: " << endl;
         cout << cross_validate_multiclass_trainer(trainer, samples, labels, 5) << endl;
+        cout << "My: Cross Validation finished." << endl;
     }
 
 }

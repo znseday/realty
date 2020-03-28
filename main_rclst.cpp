@@ -42,8 +42,15 @@ int main(int argc, const char **argv)
     }
 
     for(int i = 3; i < argc; i++)
-        if (strcmp(argv[i], "-d") == 0 || strcmp(argv[i], "d") == 0)
+    {
+        if (strcmp(argv[i], "-d") == 0 || strcmp(argv[i], "d") == 0 ||
+            strcmp(argv[i], "-D") == 0 || strcmp(argv[i], "D") == 0)
             IsDebugOutput = true;
+
+        if (strcmp(argv[i], "-cv") == 0 || strcmp(argv[i], "cv") == 0 ||
+            strcmp(argv[i], "-CV") == 0 || strcmp(argv[i], "CV") == 0)
+            IsCrossValidation = true;
+    }
 
     MY_DEBUG_ONLY(cout << "g = " << g << endl;)
     MY_DEBUG_ONLY(cout << "c = " << c << endl;)
