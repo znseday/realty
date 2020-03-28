@@ -12,6 +12,8 @@ using namespace std;
 
 bool IsDebugOutput = false;
 
+bool IsCrossValidation = false;
+
 Sample TaskTrain::DataStringToSample(std::string line)
 {
     Sample res = {0};
@@ -165,11 +167,12 @@ void TaskTrain::TrainAndSave(int ClusterCount, const std::string &fn, double g, 
     // Now let's do 5-fold cross-validation using the one_vs_one_trainer we just setup.
     // As an aside, always shuffle the order of the samples before doing cross validation.
     // For a discussion of why this is a good idea see the svm_ex.cpp example.
-    MY_DEBUG_ONLY(
+    if (IsCrossValidation)
+    {
         //std::vector<double> temp_labels = labels;
         randomize_samples(samples, labels);
         cout << "cross validation: " << endl;
         cout << cross_validate_multiclass_trainer(trainer, samples, labels, 5) << endl;
-    )
+    }
 
 }

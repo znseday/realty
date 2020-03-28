@@ -18,6 +18,7 @@
 //    #include <dlib/rand.h>
 //#endif
 
+extern bool IsCrossValidation;
 
 class TaskTrain
 {
